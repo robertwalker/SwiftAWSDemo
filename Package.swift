@@ -4,22 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "SquareNumber",
+    name: "HelloWorld",
     platforms: [
         .macOS(.v10_13),
     ],
     products: [
-      .executable(name: "SquareNumber", targets: ["SquareNumber"]),
+        .executable(name: "HelloWorld", targets: ["HelloWorld"]),
     ],
     dependencies: [
-      .package(url: "https://github.com/swift-server/swift-aws-lambda-runtime.git", .upToNextMajor(from:"0.2.0")),
+        .package(url: "https://github.com/swift-server/swift-aws-lambda-runtime.git", .upToNextMajor(from:"0.2.0")),
     ],
     targets: [
-      .target(
-        name: "SquareNumber",
-        dependencies: [
-          .product(name: "AWSLambdaRuntime", package: "swift-aws-lambda-runtime"),
-        ]
-      ),
+        .target(
+            name: "HelloWorld",
+            dependencies: [
+                .product(name: "AWSLambdaRuntime", package: "swift-aws-lambda-runtime"),
+                .product(name: "AWSLambdaEvents", package: "swift-aws-lambda-runtime"),
+            ]
+        ),
     ]
 )
