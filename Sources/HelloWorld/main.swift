@@ -6,11 +6,11 @@ let jsonEncoder = JSONEncoder()
 let jsonDecoder = JSONDecoder()
 
 struct Input: Codable {
-  let number: Double
+    let name: String
 }
 
 struct Output: Codable {
-  let result: Double
+    let hello: String
 }
 
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
