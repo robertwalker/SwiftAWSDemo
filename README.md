@@ -73,7 +73,7 @@ Here is the tutoial that this project is based on [Create your first HTTP endpoi
 curl --header "Content-Type: application/json" \
     --request POST \
     --data '{
-        "routeKey":"GET /hello",
+        "routeKey":"POST /hello",
         "version":"2.0",
         "rawPath":"/hello",
         "stageVariables":{},
@@ -86,20 +86,21 @@ curl --header "Content-Type: application/json" \
             "apiId":"pb5dg6g3rg",
             "requestId":"LgLpnibOFiAEPCA=",
             "http":{
-                "path":"/hello",
-                "userAgent":"Paw/3.1.10 (Macintosh; OS X/10.15.4) GCDHTTPRequest",
-                "method":"GET",
-                "protocol":"HTTP/1.1",
-                "sourceIp":"91.64.117.86"
+              "path":"/hello",
+              "userAgent":"Paw/3.1.10 (Macintosh; OS X/10.15.4) GCDHTTPRequest",
+              "method":"POST",
+              "protocol":"HTTP/1.1",
+              "sourceIp":"91.64.117.86"
             },
             "time":"24/Apr/2020:17:47:41 +0000"
         },
+        "body": "{\"name\":\"Fabian\"}",
         "isBase64Encoded":false,
         "rawQueryString":"",
         "headers":{
-          "host":"hello.test.com",
-          "user-agent":"Paw/3.1.10 (Macintosh; OS X/10.15.4) GCDHTTPRequest",
-          "content-length":"0"
+            "host":"hello.test.com",
+            "user-agent":"Paw/3.1.10 (Macintosh; OS X/10.15.4) GCDHTTPRequest",
+            "content-length":"0"
         }
     }' \
     http://localhost:7000/invoke
