@@ -8,22 +8,22 @@ Here is the offical [Swift AWS Lambda Runtime](https://github.com/swift-server/s
 
 Here is the tutoial that this project is based on [Getting started with Swift on AWS Lambda](https://fabianfett.de/getting-started-with-swift-aws-lambda-runtime).
 
-### Calling the Lambda Function
+### Calling the Lambda Function with a simple JSON payload
 
-#### Run from Terminal
-
-```bash
+```zsh
+# bash, zsh or fish
 curl --header "Content-Type: application/json" \
     --request POST \
     --data '{"number": 9}' \
     http://localhost:7000/invoke
 ```
 
-### Build your Code for the AWS Lambda Environment
+### Build SquareNumber Code for the AWS Lambda Environment
 
-#### Building with Docker
+#### Building SquareNumber with Docker
 
 ```zsh
+# bash or zsh
 docker run \
     --rm \
     --volume "$(pwd)/:/src" \
@@ -33,6 +33,7 @@ docker run \
 ```
 
 ```fish
+# fish
 docker run \
     --rm \
     --volume (pwd)"/:/src" \
@@ -41,9 +42,10 @@ docker run \
     swift build --product SquareNumber -c release
 ```
 
-### Packing your Executable for Deployment
+### Packing SquareNumber Executable for Deployment
 
 ```zsh
+# bash or zsh
 docker run \
     --rm \
     --volume "$(pwd)/:/src" \
@@ -53,6 +55,7 @@ docker run \
 ```
 
 ```fish
+# fish
 docker run \
     --rm \
     --volume (pwd)"/:/src" \
@@ -65,11 +68,10 @@ docker run \
 
 Here is the tutoial that this project is based on [Create your first HTTP endpoint with Swift on AWS Lambda](https://fabianfett.de/swift-on-aws-lambda-creating-your-first-http-endpoint)
 
-### Calling the Lamba Function With AWS API Gateway Request
-
-#### Run from Terminal
+### Calling the Lamba Function Locally with AWS API Gateway Request
 
 ```zsh
+# bash, zsh or fish
 curl --header "Content-Type: application/json" \
     --request POST \
     --data '{
@@ -104,4 +106,60 @@ curl --header "Content-Type: application/json" \
         }
     }' \
     http://localhost:7000/invoke
+```
+
+### Build HelloWorld Code for the AWS Lambda Environment
+
+#### Building HelloWorld with Docker
+
+```zsh
+# bash or zsh
+docker run \
+    --rm \
+    --volume "$(pwd)/:/src" \
+    --workdir "/src/" \
+    swift-lambda-builder \
+    swift build --product HelloWorld -c release
+```
+
+```fish
+# fish
+docker run \
+    --rm \
+    --volume (pwd)"/:/src" \
+    --workdir "/src/" \
+    swift-lambda-builder \
+    swift build --product HelloWorld -c release
+```
+
+### Packing HelloWorld Executable for Deployment
+
+```zsh
+# bash or zsh
+docker run \
+    --rm \
+    --volume "$(pwd)/:/src" \
+    --workdir "/src/" \
+    swift-lambda-builder \
+    scripts/package.sh HelloWorld
+```
+
+```fish
+# fish
+docker run \
+    --rm \
+    --volume (pwd)"/:/src" \
+    --workdir "/src/" \
+    swift-lambda-builder \
+    scripts/package.sh HelloWorld
+```
+
+### Calling the Lamba Function Locally with AWS API Gateway Request
+
+```zsh
+# bash, zsh or fish
+curl --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"name": "fabian"}' \
+    https://{gatewayid}.execute-api.{region}.amazonaws.com/hello
 ```
