@@ -14,7 +14,23 @@ struct Output: Codable {
 }
 
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
-  callback(.success(APIGateway.V2.Response(statusCode: .ok, body: "Hello World")))
+    guard request.context.http.method == .POST, request.context.http.path == "/hello" else {
+        return callback(.success(APIGateway.V2.Response(statusCode: .notFound)))
+    }
+    
+    do {
+        let input = try jsonDecoder.decode(Input.self, from: request.body ?? "")
+        let responseBody = Output(hello: input.name)
+        let body = try jsonEncoder.encodeAsString(responseBody)
+        callback(.success(APIGateway.V2.Response(
+            statusCode: .ok,
+            multiValueHeaders: ["content-type": ["application/json"]],
+            body: body)))
+    }
+    catch {
+        callback(.success(APIGateway.V2.Response(statusCode: .badRequest)))
+    }
+}
 
 extension JSONEncoder {
     func encodeAsString<T: Encodable>(_ value: T) throws -> String {
