@@ -1,85 +1,10 @@
-# SquareNumber
+# HelloWorld
 
 ## Swift AWS Lambda Runtime
 
 Here is the offical [Swift AWS Lambda Runtime](https://github.com/swift-server/swift-aws-lambda-runtime/).
 
-## Part 1: Getting started with Swift on AWS Lambda
-
-Here is the tutoial that this project is based on [Getting started with Swift on AWS Lambda](https://fabianfett.de/getting-started-with-swift-aws-lambda-runtime).
-
-### Calling the Lambda Function with a simple JSON payload
-
-```zsh
-# bash, zsh or fish
-curl --header "Content-Type: application/json" \
-    --request POST \
-    --data '{"number": 9}' \
-    http://localhost:7000/invoke
-```
-
-### Build SquareNumber Code for the AWS Lambda Environment
-
-#### Building SquareNumber with Docker
-
-Create the Docker container:
-
-```zsh
-# bash, zsh, or fish
-docker build -t swift-lambda-builder .
-```
-
-Build the Lambda function for release:
-
-```zsh
-# bash or zsh
-docker run \
-    --rm \
-    --volume "$(pwd)/:/src" \
-    --workdir "/src/" \
-    swift-lambda-builder \
-    swift build --product SquareNumber -c release
-```
-
-```fish
-# fish
-docker run \
-    --rm \
-    --volume (pwd)"/:/src" \
-    --workdir "/src/" \
-    swift-lambda-builder \
-    swift build --product SquareNumber -c release
-```
-
-### Packing SquareNumber Executable for Deployment
-
-```zsh
-# bash or zsh
-docker run \
-    --rm \
-    --volume "$(pwd)/:/src" \
-    --workdir "/src/" \
-    swift-lambda-builder \
-    scripts/package.sh SquareNumber
-```
-
-```fish
-# fish
-docker run \
-    --rm \
-    --volume (pwd)"/:/src" \
-    --workdir "/src/" \
-    swift-lambda-builder \
-    scripts/package.sh SquareNumber
-```
-
-Packaged Zip file can be found here:
-
-```
-.build/lambda/SquareNumber/lambda.zip
-```
-
-## Part 2: Create your first HTTP endpoint with Swift on AWS Lambda
+## Create your first HTTP endpoint with Swift on AWS Lambda
 
 Here is the tutoial that this project is based on [Create your first HTTP endpoint with Swift on AWS Lambda](https://fabianfett.de/swift-on-aws-lambda-creating-your-first-http-endpoint)
 
