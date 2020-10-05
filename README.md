@@ -22,6 +22,15 @@ curl --header "Content-Type: application/json" \
 
 #### Building SquareNumber with Docker
 
+Create the Docker container:
+
+```zsh
+# bash, zsh, or fish
+docker build -t swift-lambda-builder .
+```
+
+Build the Lambda function for release:
+
 ```zsh
 # bash or zsh
 docker run \
@@ -62,6 +71,12 @@ docker run \
     --workdir "/src/" \
     swift-lambda-builder \
     scripts/package.sh SquareNumber
+```
+
+Packaged Zip file can be found here:
+
+```
+.build/lambda/SquareNumber/lambda.zip
 ```
 
 ## Part 2: Create your first HTTP endpoint with Swift on AWS Lambda
@@ -112,6 +127,15 @@ curl --header "Content-Type: application/json" \
 
 #### Building HelloWorld with Docker
 
+Create the Docker container:
+
+```zsh
+# bash, zsh, or fish
+docker build -t swift-lambda-builder .
+```
+
+Build the Lambda function for release:
+
 ```zsh
 # bash or zsh
 docker run \
@@ -152,6 +176,11 @@ docker run \
     --workdir "/src/" \
     swift-lambda-builder \
     scripts/package.sh HelloWorld
+```
+Packaged Zip file can be found here:
+
+```
+.build/lambda/HelloWorld/lambda.zip
 ```
 
 ### Calling the Lamba Function Locally with AWS API Gateway Request
